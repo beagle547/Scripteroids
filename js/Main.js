@@ -137,8 +137,8 @@ function Main () {
 	Element.id = 'bThrust';
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.SetThrust(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.SetThrust(true)');
+	Element.setAttribute('onmouseup', 'gPlayer.SetThrust(false)');
+	Element.setAttribute('onmousedown', 'gPlayer.SetThrust(true)');
 	controls.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -146,8 +146,8 @@ function Main () {
 	Element.id = 'bLeft';
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.SetLeft(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.SetLeft(true)');
+	Element.setAttribute('onmouseup', 'gPlayer.SetLinks(false)');
+	Element.setAttribute('onmousedown', 'gPlayer.SetLinks(true)');
 	controls.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -155,8 +155,8 @@ function Main () {
 	Element.id = 'bRight';
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.SetRechts(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.SetRechts(true)');
+	Element.setAttribute('onmouseup', 'gPlayer.SetRechts(false)');
+	Element.setAttribute('onmousedown', 'gPlayer.SetRechts(true)');
 	controls.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -175,8 +175,8 @@ function Main () {
 	Element.setAttribute('onclick', '');
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.SetSpecial(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.SetSpecial(true)');
+	Element.setAttribute('onmouseup', 'gPlayer.SetSpecial(false)');
+	Element.setAttribute('onmousedown', 'gPlayer.SetSpecial(true)');
 	abilities.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -185,8 +185,8 @@ function Main () {
 	Element.setAttribute('onclick', '');
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.SetShoot(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.SetShoot(true)');
+	Element.setAttribute('onmouseup', 'gPlayer.SetShoot(false)');
+	Element.setAttribute('onmousedown', 'gPlayer.SetShoot(true)');
 	abilities.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -195,8 +195,8 @@ function Main () {
 	Element.setAttribute('onclick', '');
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.SetShield(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.SetShield(true)');
+	Element.setAttribute('onmouseup', 'gPlayer.SetShield(false)');
+	Element.setAttribute('onmousedown', 'gPlayer.SetShield(true)');
 	abilities.appendChild(Element);
 	//
 	
