@@ -106,6 +106,7 @@ function Main () {
 		Content = document.createElement('img');
 		Content.src = './img/antrieb.svg';
 		Content.style.width = '64px';
+		Content.style.height = '64px';
 		Content.style.objectFit = 'none';
 		Content.style.objectPosition = '0 0';
 	Element.appendChild(Content);
