@@ -22,7 +22,7 @@ body {
 	#menu > p {
 		font-size: 1.5rem;
 		Margin: 15px 0;
-		width: 500px;
+		width: 100%;
 		height: auto;
 		Border: 5px double black;
 		color: darkblue;
@@ -44,7 +44,7 @@ body {
 		font-size: 1.5rem;
 		float: left;
 		margin: 15px 5px;
-		width: auto;
+		width: 25%;
 		height: auto;
 		Border: 5px double black;
 		color: darkblue;
