@@ -38,6 +38,17 @@ function Main () {
 			Object.style.color = Object.style.color == 'red' ? 'white' : 'red' ;
 		}
 	}
+	
+	this.Pause = function () {
+		if(sMenu.style.display != 'block' && gStarted) {
+			gPause = gPause ? false : true;
+			menu.style.display = gPause ? 'block' : 'none';
+			game.style.display = gPause ? 'none' : 'block';
+		} else {
+			sMenu.style.display = 'none';
+			menu.style.display = 'block';
+		}
+	}
 
 	var Tag = document.getElementsByTagName('body')[0];
 	var Element, Content;
@@ -126,8 +137,8 @@ function Main () {
 	Element.id = 'bThrust';
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.setThrust(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.setThrust(true)');
+	Element.setAttribute('ontouchleave', 'gPlayer.SetThrust(false)');
+	Element.setAttribute('ontouchenter', 'gPlayer.SetThrust(true)');
 	controls.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -135,8 +146,8 @@ function Main () {
 	Element.id = 'bLeft';
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.setLeft(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.setLeft(true)');
+	Element.setAttribute('ontouchleave', 'gPlayer.SetLeft(false)');
+	Element.setAttribute('ontouchenter', 'gPlayer.SetLeft(true)');
 	controls.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -144,8 +155,16 @@ function Main () {
 	Element.id = 'bRight';
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.setRechts(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.setRechts(true)');
+	Element.setAttribute('ontouchleave', 'gPlayer.SetRechts(false)');
+	Element.setAttribute('ontouchenter', 'gPlayer.SetRechts(true)');
+	controls.appendChild(Element);
+	
+	Element = document.createElement('p');
+	Element.innerHTML = 'Menu';
+	Element.id = 'bPause';
+	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
+	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
+	Element.setAttribute('onclick', 'gMenu.Pause()');
 	controls.appendChild(Element);
 	//
 	
@@ -156,8 +175,8 @@ function Main () {
 	Element.setAttribute('onclick', '');
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.setSpecial(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.setSpecial(true)');
+	Element.setAttribute('ontouchleave', 'gPlayer.SetSpecial(false)');
+	Element.setAttribute('ontouchenter', 'gPlayer.SetSpecial(true)');
 	abilities.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -166,8 +185,8 @@ function Main () {
 	Element.setAttribute('onclick', '');
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.setShoot(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.setShoot(true)');
+	Element.setAttribute('ontouchleave', 'gPlayer.SetShoot(false)');
+	Element.setAttribute('ontouchenter', 'gPlayer.SetShoot(true)');
 	abilities.appendChild(Element);
 	
 	Element = document.createElement('p');
@@ -176,8 +195,8 @@ function Main () {
 	Element.setAttribute('onclick', '');
 	Element.setAttribute('onmouseleave', 'gMenu.ChangeMeTouch(this)');
 	Element.setAttribute('onmouseenter', 'gMenu.ChangeMeTouch(this)');
-	Element.setAttribute('ontouchleave', 'gPlayer.setShield(false)');
-	Element.setAttribute('ontouchenter', 'gPlayer.setShield(true)');
+	Element.setAttribute('ontouchleave', 'gPlayer.SetShield(false)');
+	Element.setAttribute('ontouchenter', 'gPlayer.SetShield(true)');
 	abilities.appendChild(Element);
 	//
 	
@@ -190,14 +209,7 @@ function Main () {
 			case 27 :
 			// P
 			case 80 :
-				if(sMenu.style.display != 'block' && gStarted) {
-					gPause = gPause ? false : true;
-					menu.style.display = gPause ? 'block' : 'none';
-					game.style.display = gPause ? 'none' : 'block';
-				} else {
-					sMenu.style.display = 'none';
-					menu.style.display = 'block';
-				}
+				Pause();
 			break;
 			
 			// 1 - New Game
