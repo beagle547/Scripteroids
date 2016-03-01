@@ -13,13 +13,14 @@ body {
 }
 #menu {
 	margin: auto;
-	width: 500px;
+	max-width: 500px;
 	cursor: auto;
 	z-index: -1;
 	font-size: 72px;
 }
 	
 	#menu > p {
+		font-size: 1.5rem;
 		Margin: 15px 0;
 		width: 500px;
 		height: auto;
@@ -32,7 +33,7 @@ body {
 #sMenu {
 	display: none;
 	margin: auto;
-	width: 300px;
+	max-width: 300px;
 	height: auto;
 	cursor: auto;
 	z-index: -1;
@@ -40,6 +41,7 @@ body {
 }
 
 	#sMenu > p {
+		font-size: 1.5rem;
 		float: left;
 		margin: 15px 5px;
 		width: auto;
@@ -61,7 +63,7 @@ body {
 	}
 
 	#abilities, #controls {
-		min-width: 250px;
+		width: 20%;
 		min-height: 100vh;
 	}
 
@@ -81,7 +83,10 @@ body {
 	
 	#controls > p:nth-of-type(2) {
 		float: left;
-		width: 125px;
+		width: 50%;
+	}
+	#controls > p:nth-of-type(4) {
+		clear: left;
 	}
 
 #Red {
