@@ -1,0 +1,175 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+body {
+	font-size: 100%;
+	font-family: Verdana, sans-serif;
+	color: white;
+	text-align: center;
+	background-image: url('../img/space.jpg');
+}
+#menu {
+	margin: auto;
+	width: 500px;
+	cursor: auto;
+	z-index: -1;
+	font-size: 72px;
+}
+	
+	#menu > p {
+		Margin: 15px 0;
+		width: 500px;
+		height: auto;
+		Border: 5px double black;
+		color: darkblue;
+		background-color: lightgrey;
+		box-shadow: 0 0 15px black;
+	}
+	
+#sMenu {
+	display: none;
+	margin: auto;
+	width: 300px;
+	height: auto;
+	cursor: auto;
+	z-index: -1;
+	font-size: 72px;
+}
+
+	#sMenu > p {
+		float: left;
+		margin: 15px 5px;
+		width: auto;
+		height: auto;
+		Border: 5px double black;
+		color: darkblue;
+		background-color: lightgrey;
+		box-shadow: 0 0 15px black;
+	}
+	
+#game {
+	cursor: pointer;
+	display: none;
+}
+
+	#game  p {
+		height: 33.33vh;
+		border: 1.5px solid black;
+	}
+
+	#abilities, #controls {
+		min-width: 250px;
+		min-height: 100vh;
+	}
+
+	#abilities {
+		float: left;
+		text-align: center;
+	}
+	
+	#controls {
+		float: right;
+		vertical-align: center;
+	}
+	
+	#controls > p:nth-of-type(1) {
+		margin-top: 35%;
+	}
+	
+	#controls > p:nth-of-type(2) {
+		float: left;
+		width: 125px;
+	}
+
+#Red {
+	color: red;
+}
+#Blue {
+	color: cyan;
+}
+#Green {
+	color: lightgreen;
+}
+#player {
+	padding: 5px;
+	border: none;
+	background-color: none;
+	overflow: hidden;
+	list-style: none;
+	position: fixed;
+	width: auto;
+	height: auto;
+}
+#player {
+	top: 0;
+	left: 0;
+}
+#Energy {
+	color: lightblue;
+}
+#EnergyH {
+	color: lime;
+}
+#EnergyM {
+	color: yellow;
+}
+#EnergyL {
+	color: red;
+}
+#PScoreVH {
+	color: orange;
+}
+#PScoreH {
+	color: blueviolet;
+}
+#PScoreM {
+	color: dodgerblue;
+}
+#PScoreL {
+	color: firebrick;
+}
+#PScore {
+	color: lightcyan;
+}
+#level, #fps, #console, #debug, #Pause {
+	z-index: 999;
+	padding: 0;
+	border: none;
+	resize: none;
+	height: auto;
+	outline: none;
+	position: fixed;
+	font-size: 25px;
+	overflow: hidden;
+	background-color: transparent;
+}
+#level {
+	margin: auto;
+	width: 100px;
+	height: auto;
+}
+#fps {
+	width: 100px;
+	bottom: 0;
+	right: 0;
+
+}
+#console {
+	width: 90%;
+	height: 14%;
+	padding: 0;
+	bottom: 0;
+	left: 0;
+}
+
+@media only screen and (max-width: 780px) {
+	/* and (orientation: landscape) */
+	screen.orientation.lock('landscape');
+	div {
+		
+	}
+	
+}

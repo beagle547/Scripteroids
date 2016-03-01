@@ -1,0 +1,161 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="1600px" height="64px" viewBox="0 0 1600 64">
+<defs>
+<radialGradient id="Gradient_1" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="29.3" fx="0" fy="0" gradientTransform="matrix( 1, 0, 0, 1, 0.35,-11.75) " spreadMethod="pad">
+<stop  offset="0%" stop-color="#FFFFFF"/>
+
+<stop  offset="100%" stop-color="#FFFAFA" stop-opacity="0"/>
+</radialGradient>
+
+<g id="Antrieb_0_Layer0_0_FILL">
+<path fill="url(#Gradient_1)" stroke="none" d="
+M 20 5.85
+L 0.45 -16.7 -19.95 5.85
+Q 0.6 27.65 20 5.85 Z"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.1014862060546875, 0, 0, 0.1014862060546875, 96,32) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.1405487060546875, 0, 0, 0.1405487060546875, 160,32) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.17962646484375, 0, 0, 0.17962646484375, 224,32.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.2186737060546875, 0, 0, 0.2186737060546875, 288,33.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.25775146484375, 0, 0, 0.25775146484375, 351.9,33.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.29681396484375, 0, 0, 0.29681396484375, 415.95,34.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.33587646484375, 0, 0, 0.33587646484375, 479.9,35.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.3749542236328125, 0, 0, 0.3749542236328125, 543.85,35.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.4140167236328125, 0, 0, 0.4140167236328125, 607.85,36.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.4530792236328125, 0, 0, 0.4530792236328125, 671.8,37.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.4921417236328125, 0, 0, 0.4921417236328125, 735.8,37.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.5312042236328125, 0, 0, 0.5312042236328125, 799.8,38.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.570281982421875, 0, 0, 0.570281982421875, 863.8,39.2) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.609344482421875, 0, 0, 0.609344482421875, 927.7,39.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.648406982421875, 0, 0, 0.648406982421875, 991.75,40.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.687469482421875, 0, 0, 0.687469482421875, 1055.7,41.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.726531982421875, 0, 0, 0.726531982421875, 1119.7,41.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.7656097412109375, 0, 0, 0.7656097412109375, 1183.7,42.45) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.8046722412109375, 0, 0, 0.8046722412109375, 1247.75,43.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.8437347412109375, 0, 0, 0.8437347412109375, 1311.65,43.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.8828125, 0, 0, 0.8828125, 1375.6,44.4) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.9218597412109375, 0, 0, 0.9218597412109375, 1439.6,45.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.9609375, 0, 0, 0.9609375, 1503.6,45.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 1567.55,46.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Antrieb_0_Layer0_0_FILL"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title> Scripteroids </title>
+		<link rel="stylesheet" type="text/css" href="./css/Mobile.css">
+		<link rel="stylesheet" type="text/css" href="">
+		<link rel="stylesheet" type="text/css" href="">
+		<script src="./js/Main.js"></script>
+		<script src="./js/Wormhole.js"></script>
+		<script src="./js/Shield.js"></script>
+		<script src="./js/Laser.js"></script>
+		<script src="./js/Missile.js"></script>
+		<script src="./js/Raumschiff.js"></script>
+		<script src="./js/Asteroid.js"></script>
+		<script type="text/javascript">
+			var gMenu;
+			var AnzahlAst = 20, SelfFire = 0;
+			var gPause = false, FPS = 0, CCount = 0, LCount = 1, MessageAllAst = false;
+			var Console = 'console', Display = 'display';
+			var gStarted = false;
+			var gPlayer;
+			var gLaser = [];
+			var gMissile = [];
+			var MeinAst = [];
+			var Wurmloch = [];
+				
+			function Initalisieren () {
+				
+				gMenu = new Main();
+			}
+			
+			function NewGame() {
+				setInterval(FramesPerSecond, 1000);
+				setInterval(Simulation, 1000/60)
+				
+				// small - 1256*1041, big - 2560*1081, FullScreen - 2560*1342
+				if(window.innerWidth <= 780)
+					AnzahlAst = 2;
+				else if(window.innerWidth <= 1260)
+					AnzahlAst = 4;
+				else if(window.innerWidth <= 2550)
+					AnzahlAst = 8;
+				
+				Asteroiden = AnzahlAst;
+				
+				gPlayer = new Raumschiff();
+				
+				//for(var i = 0 ; i < AnzahlAst ; i++)
+					//MeinAst.push(new Asteroid(LCount, -1, -1, -1, -1, '', -1));	
+					
+				gStarted = true;
+			}
+			
+			function CheckSize() {
+				for(var i = 0; i < MeinAst.length ; i++)
+					MeinAst[i].SetWindow(window.innerWidth, window.innerHeight);
+					
+				for(var i = 0; i < gMissile.length ; i++)
+					gMissile[i].SetWindow(window.innerWidth, window.innerHeight);
+
+				if(gPlayer) {
+					gPlayer.SetWindow(window.innerWidth, window.innerHeight);
+					gPlayer.SetStart();
+				for(var l = gPlayer.MyLaser.length-1; l >= 0  ; l--)
+					gPlayer.MyLaser[l].SetWindow(window.innerWidth, window.innerHeight);
+				}
+			}
+			
+			function InRange(ObjektA, ObjektB) {
+				var Breite = window.innerWidth, Hoehe = window.innerHeight;
+				
+				if( ( (ObjektA.PosX <= Breite*.5) && (ObjektB.PosX <= Breite*.5) ) || ( (ObjektA.PosX >= Breite*.5) && (ObjektB.PosX >= Breite*.5) ) )
+					if( ( (ObjektA.PosX <= Hoehe*.5) && (ObjektB.PosX <= Hoehe*.5) ) || ( (ObjektA.PosX >= Hoehe*.5) && (ObjektB.PosX >= Hoehe*.5) ) )
+						return true;
+			
+				return false;
+			}
+			
+			function Simulation() {
+				// document.getElementById('debug').value = 'Asteroiden:' + MeinAst.length;
+				FPS++;
+
+				if(!gPause) { // start
+				/*
+					// player vs wormholes
+					for(var i = 0; i < gPlayer.length ; i++)
+						for(var w = 0 ; w < Wurmloch.length ; w++)
+							if(!gPlayer[i].GetWormholeLock() && InRange(gPlayer[i], Wurmloch[w]))
+								if (BeruehrtKreis( gPlayer[i], Wurmloch[w] )) {
+									gPlayer[i].PosX = Wurmloch[Wurmloch[w].GetIndex()].PosX;
+									gPlayer[i].PosY = Wurmloch[Wurmloch[w].GetIndex()].PosY;
+									gPlayer[i].SetWormholeLock();
+									break;
+								}
+					
+					// plazer shots vs wormholes
+					for(var i = 0; i < gPlayer.length ; i++)
+						for(var l = 0; l < gPlayer[i].MyLaser.length ; l++)
+							for(var w = 0 ; w < Wurmloch.length ; w++)
+								if(!gPlayer[i].MyLaser[l].GetWormholeLock() && InRange(gPlayer[i].MyLaser[l], Wurmloch[w]))
+									if (BeruehrtKreis( gPlayer[i].MyLaser[l], Wurmloch[w] )) {
+										gPlayer[i].MyLaser[l].PosX = Wurmloch[Wurmloch[w].GetIndex()].PosX;
+										gPlayer[i].MyLaser[l].PosY = Wurmloch[Wurmloch[w].GetIndex()].PosY;
+										gPlayer[i].MyLaser[l].SetWormholeLock();
+										break;
+									}
+				
+					// player shots vs missiles
+					for(var i = 0; i < gPlayer.length ; i++)
+						for(var l = 0; l < gPlayer[i].MyLaser.length ; l++)
+							for(var m = 0 ; m < gMissile.length ; m++)
+								if(InRange(gPlayer[i].MyLaser[l], gMissile[m]))
+									if (BeruehrtKreis( gPlayer[i].MyLaser[l], gMissile[m] )) {
+										if(gMissile[gMissile[m].OID].PID == gPlayer[i].OID)
+											 Ausgeben(gPlayer[gMissile[m].OID].OID + ' shot it\'s own missile');
+										else Ausgeben(gPlayer[gMissile[m].OID].OID + ' shot a missile of ' + gPlayer[i].OID);
+										gPlayer[i].MyLaser[l].Explode = true;
+										gMissile[m].Explode = true;
+										gMissile.splice(m, 1);
+										gPlayer[i].MyLaser.splice (l, 1);
+										
+										break;
+									}
+					
+					// asteroids vs wormholes
+					for(var c = 0; c < MeinAst.length ; c++)
+						for(var w = 0 ; w < Wurmloch.length ; w++)
+							if(!MeinAst[c].GetWormholeLock() && InRange(MeinAst[c], Wurmloch[w]))
+								if (BeruehrtKreis( MeinAst[c], Wurmloch[w] )) {
+									MeinAst[c].PosX = Wurmloch[Wurmloch[w].GetIndex()].PosX;
+									MeinAst[c].PosY = Wurmloch[Wurmloch[w].GetIndex()].PosY;
+									MeinAst[c].SetWormholeLock();
+									break;
+								}
+					
+					// missiles vs asteroids
+					for(var i = 0; i < gMissile.length ; i++)
+						for(var c = 0; c < MeinAst.length ; c++)
+							if(InRange(gMissile[i], MeinAst[c]))
+								if (BeruehrtKreis( gMissile[i], MeinAst[c] )) {
+									if(Player[i].CheckPShot())
+										Ausgeben(Player[gMissile[i].OID].OID + ' shattered a ' + MeinAst[c].OID + ' with a Missile for ' + MeinAst[c].Points + ' Points');
+									else {
+										Ausgeben(Player[gMissile[i].OID].OID + ' shot a ' + MeinAst[c].OID + ' with a Missile for ' + MeinAst[c].Points + ' Points');
+										if(MeinAst[c].Size) {
+											MeinAst.push(new Asteroid(LCount, MeinAst[c].PosX, MeinAst[c].PosY, -1, MeinAst[c].Size-1, MeinAst[c].OID, MeinAst[c].BreiteS));
+											MeinAst.push(new Asteroid(LCount, MeinAst[c].PosX, MeinAst[c].PosY, -1, MeinAst[c].Size-1, MeinAst[c].OID, MeinAst[c].BreiteS));
+										}
+									}
+									gMissile[i].Explode = true;
+									MeinAst[c].Explode = true;
+									Player[gMissile[i].OID].Score += MeinAst[c].Points;
+									gMissile.splice(i, 1);
+									MeinAst.splice (c, 1);
+									break;
+								}
+
+					// player vs asteroids
+						for(var c = 0; c < MeinAst.length ; c++)
+							if(InRange(Player, MeinAst[c]))
+								if (BeruehrtKreis( Player, MeinAst[c] )) {
+									if(Player.Explode)
+										break;
+									if(MeinAst[c].Soft) {
+										if (Player.ActiveShield)
+											Ausgeben(MeinAst[c].OID + ' collided with ' + Player[i].OID + '\'s shield');
+										else Ausgeben(Player.OID + ' collided with a ' + MeinAst[c].OID);
+										MeinAst[c].Explode = true;
+										if(MeinAst[c].Size) {
+												MeinAst.push(new Asteroid(LCount, MeinAst[c].PosX, MeinAst[c].PosY, -1, MeinAst[c].Size-1, MeinAst[c].OID, MeinAst[c].BreiteS));
+												MeinAst.push(new Asteroid(LCount, MeinAst[c].PosX, MeinAst[c].PosY, -1, MeinAst[c].Size-1, MeinAst[c].OID, MeinAst[c].BreiteS));
+											}
+										MeinAst.splice (c, 1);
+									} else if(!Player.ActiveShield)
+									Ausgeben(Player.OID + ' was hit by a ' + MeinAst[c].OID);
+									if(!Player.ActiveShield)
+										Player.Explode = true;
+									break;
+								}
+					
+					// shots vs asteroids
+						for(var l = Player.MyLaser.length-1; l >= 0 ; l--)
+							for(var c = 0; c < MeinAst.length ; c++)
+								if(InRange(Player.MyLaser[l], MeinAst[c]))
+									if (BeruehrtKreis( Player.MyLaser[l], MeinAst[c] )) {
+										if(!Player.CheckPShot() && MeinAst[c].Armored) {
+											MeinAst[c].ChangeSource();
+										} else {
+											Ausgeben(Player.OID + ' shot a ' + MeinAst[c].OID + ' for ' + MeinAst[c].Points + ' Points');
+											Player.Score += MeinAst[c].Points;
+											MeinAst[c].Explode = true;
+											if(MeinAst[c].Size) {
+												MeinAst.push(new Asteroid(LCount, MeinAst[c].PosX, MeinAst[c].PosY, -1, MeinAst[c].Size-1, MeinAst[c].OID, MeinAst[c].BreiteS));
+												MeinAst.push(new Asteroid(LCount, MeinAst[c].PosX, MeinAst[c].PosY, -1, MeinAst[c].Size-1, MeinAst[c].OID, MeinAst[c].BreiteS));
+											}
+											MeinAst.splice (c, 1);
+										}
+										Player.MyLaser[l].Explode = true;
+										Player.MyLaser.splice (l, 1);
+										break;
+									}
+					
+					// game over ?
+					if(!MeinAst.length && !MessageAllAst) {
+						Ausgeben('All Asteroids destoyed!\nMore Asteroids incoming..');
+						MessageAllAst = true;
+						NextStage();
+					}
+					*/
+				}
+			}
+			
+			function NextStage () {
+				LCount++;
+				MessageAllAst = false;
+				AnzahlAst*=1.5;
+				
+				for(var i = 0 ; i < AnzahlAst ; i++)
+					MeinAst.push(new Asteroid(LCount, -1, -1, -1, -1, '', -1));	
+				
+				level.value = 'Level ' + LCount;
+			}
+			
+			function Distance ( P1X, P1Y, P2X, P2Y ) {
+				return Math.sqrt ( ( (P2X - P1X)*(P2X - P1X) ) + ( (P2Y - P1Y)*(P2Y - P1Y) ) );
+			}
+			
+			function CollissionCircle ( KreisA, KreisB ) {
+				
+				// abstand berechnen
+				var AbstandKreise = Abstand( KreisA.PosX +KreisA.ObjSize, KreisA.PosY +KreisA.ObjSize, KreisB.PosX +KreisB.ObjSize, KreisB.PosY +KreisB.ObjSize)
+				// radien berechnen
+				var RadiusKreise = KreisA.Rad + KreisB.Rad;
+			
+				if ( AbstandKreise <= RadiusKreise )
+					return true;
+				else
+					return false;
+			
+			}
+			
+			function CollissionSquare ( RechteckA, RechteckB ) {					
+				
+				// Koordinaten der einzelnen ecken
+				var R1coordAX, R1coordAY, R1coordBX, R1coordBY, R1coordCX, R1coordCY, R1coordDX, R1coordDY;
+				var R2coordAX, R2coordAY, R2coordBX, R2coordBY, R2coordCX, R2coordCY, R2coordDX, R2coordDY;
+				
+				// Rechteck A:
+				R1coordAX = RechteckA.Links;
+				R1coordAY = RechteckA.Oben;
+				// Ycoord = AY
+				R1coordBX = RechteckA.Links+RechteckA.Breite;
+				R1coordBY = RechteckA.Oben;
+				// X = AX
+				R1coordCX = RechteckA.Links;
+				R1coordCY = RechteckA.Oben+RechteckA.Hoehe;
+				R1coordDX = RechteckA.Links+RechteckA.Breite;
+				R1coordDY = RechteckA.Oben+RechteckA.Hoehe;
+				
+				// Rechteck B:
+				R2coordAX = RechteckB.Links;
+				R2coordAY = RechteckB.Oben;
+				// Ycoord = AY
+				R2coordBX = RechteckB.Links+RechteckA.Breite;
+				R2coordBY = RechteckB.Oben;
+				// X = AX
+				R2coordCX = RechteckB.Links;
+				R2coordCY = RechteckB.Oben+RechteckA.Hoehe;
+				R2coordDX = RechteckB.Links+RechteckA.Breite;
+				R2coordDY = RechteckB.Oben+RechteckA.Hoehe;
+				
+				// Punkt A || B || C || D
+				if( 
+					( (( R2coordAX <= R1coordDX ) && ( R2coordAX >= R1coordCX )) && (( R2coordAY <= R1coordDY ) && ( R2coordAY >= R1coordBY )) ) || 
+					( (( R2coordBX <= R1coordDX ) && ( R2coordBX >= R1coordCX )) && (( R2coordBY <= R1coordDY ) && ( R2coordBY >= R1coordBY )) ) ||
+					( (( R2coordCX <= R1coordDX ) && ( R2coordCX >= R1coordCX )) && (( R2coordCY <= R1coordDY ) && ( R2coordCY >= R1coordBY )) ) ||
+					( (( R2coordDX <= R1coordDX ) && ( R2coordDX >= R1coordCX )) && (( R2coordDY <= R1coordDY ) && ( R2coordDY >= R1coordBY )) )
+				)
+					return true;
+				else 
+					return false;
+			
+			}
+
+			function CollissionCircleSquare (Kreis, Rechteck) {
+			
+			}
+			
+			function Output ( Message ) {
+				if(CCount)
+					document.getElementById('console').value += '\n';
+				else
+					document.getElementById('console').value = '';
+				CCount++;
+				document.getElementById('console').value += CCount + ': ' + Message;
+				document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
+			}
+			
+			function HideMe( element ) {
+				element.style.color = element.style.color == 'rgb(0, 204, 0)' ? 'transparent' : 'rgb(0, 204, 0)';
+			}
+			
+			function FramesPerSecond () {
+				fps.value = 'FPS '+FPS;
+				FPS = 0;
+			}
+			
+		</script>
+	</head>
+	<body onload="Initalisieren();" onresize="CheckSize();">
+		<div id="menu"></div>
+		<div id="sMenu"></div>
+		<div id="game">
+			<div id="abilities"></div>
+			<div id="controls"></div>
+			<div id="mainframe"></div>
+			<input id="level" style="color: #0c0;" type="text" value="Level 1" readonly>
+			<ul id="player"></ul>
+			<input id="fps" onclick="HideMe(this);" style="color: #0c0;" type="text" value="FPS" readonly>
+			<textarea id="console" style="color: #0c0; display: none;" readonly>Click me to hide/show</textarea>
+		</div>
+	</body>
+</html>
